@@ -1,0 +1,60 @@
+package com.neon.app.entity;
+
+import com.neon.app.dto.MessageDTO;
+import com.neon.app.enumeration.MessageStatus;
+import com.neon.app.enumeration.MessageType;
+import com.neon.app.enumeration.StatusCode;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import java.time.OffsetDateTime;
+import javax.persistence.*;
+
+/**
+ * @author invzbl3 on 7/8/2022
+ * @project neonApp
+ */
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity(name = "message_entity")
+@Table(name = "messages")
+public class Message {
+
+    public Message(MessageDTO messageDTO) {
+        this.message_type = messageDTO.getMessage_type();
+        this.timestamp = messageDTO.getTimestamp();
+        this.origin = messageDTO.getOrigin();
+        this.destination = messageDTO.getDestination();
+        this.duration = messageDTO.getDuration();
+        this.status_code = messageDTO.getStatus_code();
+        this.status_description = messageDTO.getStatus_description();
+        this.message_content = messageDTO.getMessage_content();
+        this.message_status = messageDTO.getMessage_status();
+    }
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "message_id")
+    private Integer id;
+
+    private MessageType message_type;
+
+    private OffsetDateTime timestamp; // LocalDateTime // Timestamp
+
+    private long origin;
+
+    private long destination;
+
+    private int duration;
+
+    private StatusCode status_code;
+
+    private String status_description;
+
+    private String message_content;
+
+    private MessageStatus message_status;
+}
