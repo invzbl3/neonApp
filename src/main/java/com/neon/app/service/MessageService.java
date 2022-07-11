@@ -1,6 +1,8 @@
 package com.neon.app.service;
 
 import com.neon.app.dto.MessageDTO;
+import com.neon.app.dto.ReportDTO;
+
 import java.util.List;
 
 /**
@@ -11,7 +13,15 @@ public interface MessageService {
 
     List<MessageDTO> saveAllMessages(MessageDTO messageDTO);
 
-    int getAllMetrics();
+    ReportDTO getAllMetrics();
 
-    int getAllTimestamps();
+    int totalNumberOfRows();
+
+    int totalNumberOfCalls();
+
+    int totalNumberOfMessages();
+
+    int totalNumberOfDifferentOriginCountryCodes();
+
+    int totalNumberOfDifferentDestinationCountryCodes();
 }

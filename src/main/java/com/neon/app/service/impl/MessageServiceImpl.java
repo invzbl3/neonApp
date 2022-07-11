@@ -27,11 +27,8 @@ public class MessageServiceImpl implements MessageService {
 
     private final MessageRepository messageRepository;
 
-    private final RestTemplate restTemplate;
-
-    public MessageServiceImpl(MessageRepository messageRepository, RestTemplate restTemplate) {
+    public MessageServiceImpl(MessageRepository messageRepository) {
         this.messageRepository = messageRepository;
-        this.restTemplate = restTemplate;
     }
 
     /* The service will have an HTTP endpoint (/messages) which will process and save the JSON
@@ -43,17 +40,37 @@ public class MessageServiceImpl implements MessageService {
         JSONPObject jsonObject = collection.find().first();
     }
 
-    /* The service will have an HTTP endpoint (/metrics) that returns a set of counters related
-    counters for all messages ever processed */
+    // counters
+
+    /* Total number of processed JSON files */
+
+    /* Total number of rows */
     @Override
-    public int getAllMetrics() {
-        return messageRepository.setOfAllMessagesCounters();
+    public int totalNumberOfRows() {
+        return messageRepository.totalNumberOfRows();
     }
 
-    /* The service will have an HTTP endpoint (/metrics/YYMMDD) that returns a set of counters
-    related counters to the timestamps, represented by date YYMMDD */
+    /* total number of calls */
     @Override
-    public int getAllTimestamps() {
-        return messageRepository.setOfTimestampsCounters();
+    public int totalNumberOfCalls() {
+        return messageRepository.totalNumberOfCalls();
+    }
+
+    /* Total number of messages */
+    @Override
+    public int totalNumberOfMessages() {
+        return messageRepository.totalNumberOfMessages();
+    }
+
+    /* Total number of different origin country codes (https://en.wikipedia.org/wiki/MSISDN) */
+    @Override
+    public int totalNumberOfDifferentOriginCountryCodes() {
+        return messageRepository.totalNumberOfDifferentOriginCountryCodes();
+    }
+
+    /* Total number of different destination country codes */
+    @Override
+    public int totalNumberOfDifferentDestinationCountryCodes() {
+        return messageRepository.totalNumberOfDifferentDestinationCountryCodes();
     }
 }
