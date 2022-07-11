@@ -9,9 +9,9 @@ import java.util.List;
  */
 public interface MessageService {
 
-    List<MessageDTO> saveAllMessages();
+    List<MessageDTO> saveAllMessages(MessageDTO messageDTO);
 
-    List<MessageDTO> getAllMetrics();
+    int getAllMetrics();
 
-    List<MessageDTO> getAllTimestamps();
+    int getAllTimestamps();
 }

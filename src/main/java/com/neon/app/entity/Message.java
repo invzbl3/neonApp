@@ -24,15 +24,15 @@ import javax.persistence.*;
 public class Message {
 
     public Message(MessageDTO messageDTO) {
-        this.message_type = messageDTO.getMessage_type();
+        this.messageType = messageDTO.getMessageType();
         this.timestamp = messageDTO.getTimestamp();
         this.origin = messageDTO.getOrigin();
         this.destination = messageDTO.getDestination();
         this.duration = messageDTO.getDuration();
-        this.status_code = messageDTO.getStatus_code();
-        this.status_description = messageDTO.getStatus_description();
-        this.message_content = messageDTO.getMessage_content();
-        this.message_status = messageDTO.getMessage_status();
+        this.statusCode = messageDTO.getStatusCode();
+        this.statusDescription = messageDTO.getStatusDescription();
+        this.messageContent = messageDTO.getMessageContent();
+        this.messageStatus = messageDTO.getMessageStatus();
     }
 
     @Id
@@ -40,7 +40,7 @@ public class Message {
     @Column(name = "message_id")
     private Integer id;
 
-    private MessageType message_type;
+    private MessageType messageType;
 
     private OffsetDateTime timestamp; // LocalDateTime // Timestamp
 
@@ -50,11 +50,11 @@ public class Message {
 
     private int duration;
 
-    private StatusCode status_code;
+    private StatusCode statusCode;
 
-    private String status_description;
+    private String statusDescription;
 
-    private String message_content;
+    private String messageContent;
 
-    private MessageStatus message_status;
+    private MessageStatus messageStatus;
 }

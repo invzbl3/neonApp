@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.web.bind.annotation.PutMapping;
-import java.net.URISyntaxException;
+import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 import static com.neon.app.controller.Endpoints.*;
 
@@ -15,6 +15,7 @@ import static com.neon.app.controller.Endpoints.*;
  * @author invzbl3 on 7/8/2022
  * @project neonApp
  */
+@RestController
 public class MessageController {
 
     private final MessageServiceImpl messageService;
@@ -24,26 +25,41 @@ public class MessageController {
     }
 
     @PutMapping(PUT_ALL_MESSAGES)
-    @Operation(summary = "Put all messages")
-    public ResponseEntity<List<MessageDTO>> saveMessages() throws URISyntaxException {
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(messageService.saveAllMessages());
+    @Operation(summary = "Save all messages")
+    public ResponseEntity<List<MessageDTO>> saveMessages(MessageDTO messageDTO) {
+
+        try {
+            return ResponseEntity
+                    .status(HttpStatus.OK)
+                    .body(messageService.saveAllMessages(messageDTO));
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @GetMapping(GET_ALL_METRICS)
     @Operation(summary = "Get all metrics")
-    public ResponseEntity<List<MessageDTO>> getAllMetrics() {
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(messageService.getAllMetrics());
+    public ResponseEntity<Integer> getAllMetrics() {
+
+        try {
+            return ResponseEntity
+                    .status(HttpStatus.OK)
+                    .body(messageService.getAllMetrics());
+        } catch (Exception e) {
+            return new ResponseEntity<>(0, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @GetMapping(GET_ALL_TIMESTAMPS)
     @Operation(summary = "Get all timestamps")
-    public ResponseEntity<List<MessageDTO>> getAllTimestamps() {
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(messageService.getAllTimestamps());
+    public ResponseEntity<Integer> getAllTimestamps() {
+
+        try {
+            return ResponseEntity
+                    .status(HttpStatus.OK)
+                    .body(messageService.getAllTimestamps());
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }
