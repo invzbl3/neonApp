@@ -44,15 +44,25 @@ public class MessageServiceImpl implements MessageService {
     /* Get metrics by date */
     @Override
     public ReportDTO getMetricsByDate() {
-        //...
-        return null;
+        ReportDTO reportDTO = new ReportDTO();
+        reportDTO.setTotalNumberOfRaws(totalNumberOfRows());
+        reportDTO.setTotalNumberOfCalls(totalNumberOfCalls());
+        reportDTO.setTotalNumberOfMessages(totalNumberOfMessages());
+        reportDTO.setTotalNumberOfDifferentOriginCountryCodes(totalNumberOfDifferentOriginCountryCodes());
+        reportDTO.setTotalNumberOfDifferentDestinationCountryCodes(totalNumberOfDifferentDestinationCountryCodes());
+        return reportDTO;
     }
 
     /* Get all metrics */
     @Override
     public ReportDTO getAllMetrics() {
-        //...
-        return null;
+        ReportDTO reportDTO = new ReportDTO();
+        reportDTO.setTotalNumberOfRaws(totalNumberOfRows());
+        reportDTO.setTotalNumberOfCalls(totalNumberOfCalls());
+        reportDTO.setTotalNumberOfMessages(totalNumberOfMessages());
+        reportDTO.setTotalNumberOfDifferentOriginCountryCodes(totalNumberOfDifferentOriginCountryCodes());
+        reportDTO.setTotalNumberOfDifferentDestinationCountryCodes(totalNumberOfDifferentDestinationCountryCodes());
+        return reportDTO;
     }
 
     /* Total number of processed JSON files */
