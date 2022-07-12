@@ -23,7 +23,8 @@ public class MessageServiceImpl implements MessageService {
 
     private final MongoDatabase database = mongoClient.getDatabase("mydb");
 
-    private final MongoCollection<JSONPObject> collection = database.getCollection("json", JSONPObject.class);
+    //private final MongoCollection<JSONPObject> collection = database.getCollection("json", JSONPObject.class);
+    private final MongoCollection<MessageDTO> collection = database.getCollection("collection", MessageDTO.class);
 
     private final MessageRepository messageRepository;
 
@@ -35,9 +36,8 @@ public class MessageServiceImpl implements MessageService {
     data to a database of your choice (mongo, postgre, mysql, (h2 with web console - bonus points
     for simplicity) */
     @Override
-    public List<MessageDTO> saveAllMessages(MessageDTO messageDTO) {
-        collection.save(messageDTO);
-        JSONPObject jsonObject = collection.find().first();
+    public void saveAllMessages(MessageDTO messageDTO) {
+        collection.insertOne(messageDTO);
     }
 
     // counters

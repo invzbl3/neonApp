@@ -9,10 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import java.util.List;
-
-import static com.neon.app.controller.Endpoints.*;
 
 /**
  * @author invzbl3 on 7/8/2022
@@ -27,16 +24,16 @@ public class MessageController {
         this.messageService = messageService;
     }
 
-    @PutMapping(PUT_ALL_MESSAGES)
+    @PutMapping("/messages")
     @Operation(summary = "Save all messages")
     public ResponseEntity<List<MessageDTO>> saveMessages(MessageDTO messageDTO) {
 
         return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(messageService.saveAllMessages(messageDTO));
+                .status(HttpStatus.CREATED)
+                .build();
     }
 
-    @GetMapping(GET_ALL_METRICS)
+    @GetMapping("/metrics")
     @Operation(summary = "Get all metrics")
     public ResponseEntity<ReportDTO> getAllMetrics() {
 
@@ -45,7 +42,7 @@ public class MessageController {
                 .body(messageService.getAllMetrics());
     }
 
-    @GetMapping(GET_ALL_TIMESTAMPS)
+    @GetMapping("/metrics/YYMMDD")
     @Operation(summary = "Get all timestamps")
     public ResponseEntity<Integer> getAllTimestamps() {
 

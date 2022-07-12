@@ -11,7 +11,7 @@ import java.util.List;
  */
 public interface MessageService {
 
-    List<MessageDTO> saveAllMessages(MessageDTO messageDTO);
+    void saveAllMessages(MessageDTO messageDTO);
 
     ReportDTO getAllMetrics();
 
