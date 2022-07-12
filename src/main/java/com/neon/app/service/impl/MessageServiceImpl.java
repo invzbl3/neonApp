@@ -6,6 +6,7 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.MongoClients;
 import com.neon.app.dto.MessageDTO;
+import com.neon.app.dto.ReportDTO;
 import com.neon.app.repository.MessageRepository;
 import com.neon.app.service.MessageService;
 import org.springframework.stereotype.Service;
@@ -72,5 +73,10 @@ public class MessageServiceImpl implements MessageService {
     @Override
     public int totalNumberOfDifferentDestinationCountryCodes() {
         return messageRepository.totalNumberOfDifferentDestinationCountryCodes();
+    }
+
+    @Override
+    public ReportDTO getMetricsByDate() {
+        //...
     }
 }

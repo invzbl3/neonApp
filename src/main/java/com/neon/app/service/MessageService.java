@@ -3,8 +3,6 @@ package com.neon.app.service;
 import com.neon.app.dto.MessageDTO;
 import com.neon.app.dto.ReportDTO;
 
-import java.util.List;
-
 /**
  * @author invzbl3 on 7/8/2022
  * @project neonApp
@@ -14,6 +12,8 @@ public interface MessageService {
     void saveAllMessages(MessageDTO messageDTO);
 
     ReportDTO getAllMetrics();
+
+    ReportDTO getMetricsByDate();
 
     int totalNumberOfRows();
 
