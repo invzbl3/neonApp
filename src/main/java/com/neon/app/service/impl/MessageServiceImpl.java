@@ -1,6 +1,5 @@
 package com.neon.app.service.impl;
 
-import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
@@ -10,8 +9,6 @@ import com.neon.app.dto.ReportDTO;
 import com.neon.app.repository.MessageRepository;
 import com.neon.app.service.MessageService;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
-import java.util.List;
 
 /**
  * @author invzbl3 on 7/8/2022
@@ -41,7 +38,22 @@ public class MessageServiceImpl implements MessageService {
         collection.insertOne(messageDTO);
     }
 
+
     // counters
+
+    /* Get metrics by date */
+    @Override
+    public ReportDTO getMetricsByDate() {
+        //...
+        return null;
+    }
+
+    /* Get all metrics */
+    @Override
+    public ReportDTO getAllMetrics() {
+        //...
+        return null;
+    }
 
     /* Total number of processed JSON files */
 
@@ -73,10 +85,5 @@ public class MessageServiceImpl implements MessageService {
     @Override
     public int totalNumberOfDifferentDestinationCountryCodes() {
         return messageRepository.totalNumberOfDifferentDestinationCountryCodes();
-    }
-
-    @Override
-    public ReportDTO getMetricsByDate() {
-        //...
     }
 }
