@@ -10,7 +10,6 @@ import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import java.util.List;
 
 /**
  * @author invzbl3 on 7/8/2022
@@ -25,6 +24,11 @@ public class MessageController {
         this.messageService = messageService;
     }
 
+    /**
+     * The service will have an HTTP endpoint (/messages) which will process and save the JSON
+     * data to a database of your choice (mongo, postgre, mysql, (h2 with web console - bonus points
+     * for simplicity))
+     */
     @PutMapping("/messages")
     @Operation(summary = "Save all messages")
     @ResponseStatus(HttpStatus.CREATED)
@@ -32,6 +36,10 @@ public class MessageController {
         messageService.saveAllMessages(messageDTO);
     }
 
+    /**
+     * The service will have an HTTP endpoint (/metrics) that returns a set of counters related
+     * counters for all messages ever processed
+     */
     @GetMapping("/metrics")
     @Operation(summary = "Get all metrics")
     public ResponseEntity<ReportDTO> getAllMetrics() {
@@ -41,6 +49,10 @@ public class MessageController {
                 .body(messageService.getAllMetrics());
     }
 
+    /**
+     * The service will have an HTTP endpoint (/metrics/YYMMDD) that returns a set of counters
+     * related counters to the timestamps, represented by date YYMMDD
+     */
     @GetMapping("/metrics/YYMMDD")
     @Operation(summary = "Get all timestamps")
     public ResponseEntity<Integer> getAllTimestamps() {

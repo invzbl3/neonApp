@@ -1,6 +1,5 @@
 package com.neon.app.entity;
 
-import com.neon.app.dto.MessageDTO;
 import com.neon.app.enumeration.MessageStatus;
 import com.neon.app.enumeration.MessageType;
 import com.neon.app.enumeration.StatusCode;
@@ -22,18 +21,6 @@ import javax.persistence.*;
 @Entity(name = "message_entity")
 @Table(name = "messages")
 public class Message {
-
-    public Message(MessageDTO messageDTO) {
-        this.messageType = messageDTO.getMessageType();
-        this.timestamp = messageDTO.getTimestamp();
-        this.origin = messageDTO.getOrigin();
-        this.destination = messageDTO.getDestination();
-        this.duration = messageDTO.getDuration();
-        this.statusCode = messageDTO.getStatusCode();
-        this.statusDescription = messageDTO.getStatusDescription();
-        this.messageContent = messageDTO.getMessageContent();
-        this.messageStatus = messageDTO.getMessageStatus();
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
