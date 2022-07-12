@@ -49,7 +49,7 @@ public class MessageController {
      */
     @GetMapping("/metrics/{date}")
     @Operation(summary = "Get all metrics by date")
-    public ReportDTO getAllMetricsByDate(@PathVariable Date date) {
+    public ReportDTO getAllMetricsByDate(@PathVariable String date) {
         return messageService.getAllMetrics();
     }
 }
