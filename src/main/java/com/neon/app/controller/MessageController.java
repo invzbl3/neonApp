@@ -4,7 +4,6 @@ import com.neon.app.dto.MessageDTO;
 import com.neon.app.dto.ReportDTO;
 import com.neon.app.service.impl.MessageServiceImpl;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -42,11 +41,9 @@ public class MessageController {
      */
     @GetMapping("/metrics")
     @Operation(summary = "Get all metrics")
-    public ResponseEntity<ReportDTO> getAllMetrics() {
-
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(messageService.getAllMetrics());
+    @ResponseStatus(HttpStatus.OK)
+    public ReportDTO getAllMetrics() {
+        return messageService.getAllMetrics();
     }
 
     /**
@@ -55,10 +52,8 @@ public class MessageController {
      */
     @GetMapping("/metrics/YYMMDD")
     @Operation(summary = "Get all timestamps")
-    public ResponseEntity<Integer> getAllTimestamps() {
-
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(messageService.getAllTimestamps());
+    @ResponseStatus(HttpStatus.OK)
+    public Integer getAllTimestamps() {
+        return messageService.getAllTimestamps();
     }
 }
