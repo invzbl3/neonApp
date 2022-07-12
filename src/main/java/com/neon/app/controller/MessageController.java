@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
@@ -26,11 +27,9 @@ public class MessageController {
 
     @PutMapping("/messages")
     @Operation(summary = "Save all messages")
-    public ResponseEntity<List<MessageDTO>> saveMessages(MessageDTO messageDTO) {
-
-        return ResponseEntity
-                .status(HttpStatus.CREATED)
-                .build();
+    @ResponseStatus(HttpStatus.CREATED)
+    public void saveMessages(MessageDTO messageDTO) {
+        messageService.saveAllMessages(messageDTO);
     }
 
     @GetMapping("/metrics")
