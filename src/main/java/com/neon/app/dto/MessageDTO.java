@@ -22,7 +22,7 @@ public class MessageDTO implements Serializable {
 
     private MessageType messageType;
 
-    private OffsetDateTime timestamp; // LocalDateTime // Timestamp
+    private long timestamp; // LocalDateTime // Timestamp // OffsetDateTime
 
     private long origin;
 
