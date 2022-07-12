@@ -4,11 +4,9 @@ import com.neon.app.dto.MessageDTO;
 import com.neon.app.dto.ReportDTO;
 import com.neon.app.service.impl.MessageServiceImpl;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
 import io.swagger.v3.oas.annotations.Operation;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import java.util.Date;
 
 /**
  * @author invzbl3 on 7/8/2022
@@ -41,7 +39,6 @@ public class MessageController {
      */
     @GetMapping("/metrics")
     @Operation(summary = "Get all metrics")
-    @ResponseStatus(HttpStatus.OK)
     public ReportDTO getAllMetrics() {
         return messageService.getAllMetrics();
     }
@@ -50,10 +47,9 @@ public class MessageController {
      * The service will have an HTTP endpoint (/metrics/YYMMDD) that returns a set of counters
      * related counters to the timestamps, represented by date YYMMDD
      */
-    @GetMapping("/metrics/YYMMDD")
-    @Operation(summary = "Get all timestamps")
-    @ResponseStatus(HttpStatus.OK)
-    public Integer getAllTimestamps() {
-        return messageService.getAllTimestamps();
+    @GetMapping("/metrics/{date}")
+    @Operation(summary = "Get all metrics by date")
+    public ReportDTO getAllMetricsByDate(@PathVariable Date date) {
+        return messageService.getAllMetrics();
     }
 }
