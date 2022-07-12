@@ -3,10 +3,11 @@ package com.neon.app.controller;
 import com.neon.app.dto.MessageDTO;
 import com.neon.app.dto.ReportDTO;
 import com.neon.app.service.impl.MessageServiceImpl;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import io.swagger.v3.oas.annotations.Operation;
-import java.util.Date;
+import java.time.LocalDate;
 
 /**
  * @author invzbl3 on 7/8/2022
@@ -49,7 +50,7 @@ public class MessageController {
      */
     @GetMapping("/metrics/{date}")
     @Operation(summary = "Get all metrics by date")
-    public ReportDTO getAllMetricsByDate(@PathVariable String date) {
+    public ReportDTO getAllMetricsByDate(@PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date) {
         return messageService.getMetricsByDate();
     }
 }
