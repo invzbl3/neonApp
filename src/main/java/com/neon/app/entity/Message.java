@@ -4,10 +4,8 @@ import com.neon.app.enumeration.MessageStatus;
 import com.neon.app.enumeration.MessageType;
 import com.neon.app.enumeration.StatusCode;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import java.time.OffsetDateTime;
 import javax.persistence.*;
 
 /**
@@ -15,7 +13,6 @@ import javax.persistence.*;
  * @project neonApp
  */
 @Data
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity(name = "message_entity")
@@ -29,7 +26,7 @@ public class Message {
 
     private MessageType messageType;
 
-    private OffsetDateTime timestamp; // LocalDateTime // Timestamp
+    private long timestamp; // LocalDateTime // Timestamp // OffsetDateTime
 
     private long origin;
 

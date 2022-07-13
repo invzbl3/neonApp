@@ -9,6 +9,7 @@ import com.neon.app.dto.ReportDTO;
 import com.neon.app.repository.MessageRepository;
 import com.neon.app.service.MessageService;
 import org.springframework.stereotype.Service;
+import java.time.LocalDate;
 
 /**
  * @author invzbl3 on 7/8/2022
@@ -43,7 +44,7 @@ public class MessageServiceImpl implements MessageService {
 
     /* Get metrics by date */
     @Override
-    public ReportDTO getMetricsByDate() {
+    public ReportDTO getMetricsByDate(LocalDate date) {
         ReportDTO reportDTO = new ReportDTO();
         reportDTO.setTotalNumberOfRaws(totalNumberOfRows());
         reportDTO.setTotalNumberOfCalls(totalNumberOfCalls());

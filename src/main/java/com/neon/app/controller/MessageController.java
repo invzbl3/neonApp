@@ -51,6 +51,6 @@ public class MessageController {
     @GetMapping("/metrics/{date}")
     @Operation(summary = "Get all metrics by date")
     public ReportDTO getAllMetricsByDate(@PathVariable @DateTimeFormat(pattern = "YYMMDD") LocalDate date) {
-        return messageService.getMetricsByDate();
+        return messageService.getMetricsByDate(date);
     }
 }

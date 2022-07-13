@@ -32,49 +32,43 @@ public class ControllerExceptionHandler {
     @ResponseStatus(code = HttpStatus.UNAUTHORIZED)
     public ExceptionDTO customExceptionHandler(CustomAuthenticationException customException) {
         ControllerExceptionHandler.LOG.error(customException.getMessage());
-        ExceptionDTO exceptionDTO = this.initExceptionDTO(customException, customException.getMessage(), 401,
+        return this.initExceptionDTO(customException, customException.getMessage(), 401,
                 "Bad Request");
-        return exceptionDTO;
     }
 
     @ExceptionHandler(AccessDeniedException.class)
     @ResponseStatus(code = HttpStatus.UNAUTHORIZED)
     public ExceptionDTO accessDeniedException(AccessDeniedException exception) {
-        ControllerExceptionHandler.LOG.error("unxpected error has happend ", exception);
-        ExceptionDTO exceptionDTO = this.initExceptionDTO(exception, exception.getMessage(), 401, "Unauthorized");
-        return exceptionDTO;
+        ControllerExceptionHandler.LOG.error("unexpected error has happend ", exception);
+        return this.initExceptionDTO(exception, exception.getMessage(), 401, "Unauthorized");
     }
 
     @ExceptionHandler(AuthenticationException.class)
     @ResponseStatus(code = HttpStatus.FORBIDDEN)
     public ExceptionDTO authenticationException(AuthenticationException exception) {
-        ControllerExceptionHandler.LOG.error("unxpected error has happend ", exception);
-        ExceptionDTO exceptionDTO = this.initExceptionDTO(exception, exception.getMessage(), 403, "Forbidden");
-        return exceptionDTO;
+        ControllerExceptionHandler.LOG.error("unexpected error has happend ", exception);
+        return this.initExceptionDTO(exception, exception.getMessage(), 403, "Forbidden");
     }
 
     @ExceptionHandler(JwtException.class)
     @ResponseStatus(code = HttpStatus.FORBIDDEN)
     public ExceptionDTO jwtException(JwtException exception) {
-        ControllerExceptionHandler.LOG.error("unxpected error has happend ", exception);
-        ExceptionDTO exceptionDTO = this.initExceptionDTO(exception, exception.getMessage(), 403, "Forbidden");
-        return exceptionDTO;
+        ControllerExceptionHandler.LOG.error("unexpected error has happend ", exception);
+        return this.initExceptionDTO(exception, exception.getMessage(), 403, "Forbidden");
     }
 
     @ExceptionHandler(MaxUploadSizeExceededException.class)
     @ResponseStatus(code = HttpStatus.BAD_REQUEST)
     public ExceptionDTO maxUploadSizeExceededExceptionHandler(MaxUploadSizeExceededException e) {
-        ControllerExceptionHandler.LOG.error("unxpected error has happend ", e.getCause());
-        ExceptionDTO exceptionDTO = this.initExceptionDTO(e, "Max Upload Size Exceeded", 400, "Bad Request");
-        return exceptionDTO;
+        ControllerExceptionHandler.LOG.error("unexpected error has happend ", e.getCause());
+        return this.initExceptionDTO(e, "Max Upload Size Exceeded", 400, "Bad Request");
     }
 
     @ExceptionHandler(Exception.class)
     @ResponseStatus(code = HttpStatus.INTERNAL_SERVER_ERROR)
     public ExceptionDTO exception(Exception exception) {
-        ControllerExceptionHandler.LOG.error("unxpected error has happend ", exception);
-        ExceptionDTO exceptionDTO = this.initExceptionDTO(exception, "Internal Error", 500, "Internal Server error");
-        return exceptionDTO;
+        ControllerExceptionHandler.LOG.error("unexpected error has happend ", exception);
+        return this.initExceptionDTO(exception, "Internal Error", 500, "Internal Server error");
     }
 
     private ExceptionDTO initExceptionDTO(Exception e, String message, int status, String error) {
