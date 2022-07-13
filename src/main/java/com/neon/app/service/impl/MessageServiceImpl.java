@@ -46,6 +46,7 @@ public class MessageServiceImpl implements MessageService {
     @Override
     public ReportDTO getMetricsByDate(LocalDate date) {
         ReportDTO reportDTO = new ReportDTO();
+        reportDTO.setTotalNumberOfProcessedJSONFiles(totalNumberOfProcessedJSONFiles());
         reportDTO.setTotalNumberOfRaws(totalNumberOfRows());
         reportDTO.setTotalNumberOfCalls(totalNumberOfCalls());
         reportDTO.setTotalNumberOfMessages(totalNumberOfMessages());
@@ -58,6 +59,7 @@ public class MessageServiceImpl implements MessageService {
     @Override
     public ReportDTO getAllMetrics() {
         ReportDTO reportDTO = new ReportDTO();
+        reportDTO.setTotalNumberOfProcessedJSONFiles(totalNumberOfProcessedJSONFiles());
         reportDTO.setTotalNumberOfRaws(totalNumberOfRows());
         reportDTO.setTotalNumberOfCalls(totalNumberOfCalls());
         reportDTO.setTotalNumberOfMessages(totalNumberOfMessages());
@@ -67,6 +69,10 @@ public class MessageServiceImpl implements MessageService {
     }
 
     /* Total number of processed JSON files */
+    @Override
+    public int totalNumberOfProcessedJSONFiles() {
+        return messageRepository.totalNumberOfProcessedJSONFiles();
+    }
 
     /* Total number of rows */
     @Override

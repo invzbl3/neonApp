@@ -16,6 +16,8 @@ public interface MessageService {
 
     void saveAllMessages(MessageDTO messageDTO);
 
+    int totalNumberOfProcessedJSONFiles();
+
     int totalNumberOfRows();
 
     int totalNumberOfCalls();
