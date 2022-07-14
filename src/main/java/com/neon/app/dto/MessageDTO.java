@@ -7,6 +7,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 /**
  * @author invzbl3 on 7/8/2022
  * @project neonApp
@@ -18,7 +20,7 @@ public class MessageDTO {
 
     private MessageType messageType;
 
-    private long timestamp; // LocalDateTime // Timestamp // OffsetDateTime
+    private LocalDateTime timestamp; // long // Timestamp // OffsetDateTime // Instant
 
     private long origin;
 

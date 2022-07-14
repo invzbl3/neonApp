@@ -27,7 +27,7 @@ public class MessageController {
      * data to a database of your choice (mongo, postgre, mysql, (h2 with web console - bonus points
      * for simplicity))
      */
-    @PutMapping("/messages")
+    @PostMapping("/messages")
     @Operation(summary = "Save all messages")
     @ResponseStatus(HttpStatus.CREATED)
     public void saveMessages(MessageDTO messageDTO) {

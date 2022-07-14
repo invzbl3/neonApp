@@ -17,7 +17,8 @@ public interface MessageRepository extends JpaRepository<ReportDTO, Integer> {
     int totalNumberOfProcessedJSONFiles();
 
     // total number of rows
-    @Query(value = " ", nativeQuery = true)
+    //@Query(value = "SELECT COUNT(message_type) FROM messages WHERE message_type = 'CALL' or 'MSG'", nativeQuery = true)
+    @Query(value = "SELECT COUNT(*) FROM messages", nativeQuery = true)
     int totalNumberOfRows();
 
     // total number of calls
