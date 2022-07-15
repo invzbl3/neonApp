@@ -12,11 +12,9 @@ public interface MessageService {
 
     ReportDTO getAllMetrics();
 
-    ReportDTO getMetricsByDate(LocalDate date);
+    ReportDTO getAllMetrics(LocalDate date);
 
     void saveAllMessages(MessageDTO messageDTO);
-
-    int totalNumberOfProcessedJSONFiles();
 
     int totalNumberOfRows();
 
@@ -27,4 +25,14 @@ public interface MessageService {
     int totalNumberOfDifferentOriginCountryCodes();
 
     int totalNumberOfDifferentDestinationCountryCodes();
+
+    int totalNumberOfRows(LocalDate date);
+
+    int totalNumberOfCalls(LocalDate date);
+
+    int totalNumberOfMessages(LocalDate date);
+
+    int totalNumberOfDifferentOriginCountryCodes(LocalDate date);
+
+    int totalNumberOfDifferentDestinationCountryCodes(LocalDate date);
 }

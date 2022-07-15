@@ -44,14 +44,13 @@ public class MessageServiceImpl implements MessageService {
 
     /* Get metrics by date */
     @Override
-    public ReportDTO getMetricsByDate(LocalDate date) {
+    public ReportDTO getAllMetrics(LocalDate date) {
         ReportDTO reportDTO = new ReportDTO();
-        reportDTO.setTotalNumberOfProcessedJSONFiles(totalNumberOfProcessedJSONFiles());
-        reportDTO.setTotalNumberOfRaws(totalNumberOfRows());
-        reportDTO.setTotalNumberOfCalls(totalNumberOfCalls());
-        reportDTO.setTotalNumberOfMessages(totalNumberOfMessages());
-        reportDTO.setTotalNumberOfDifferentOriginCountryCodes(totalNumberOfDifferentOriginCountryCodes());
-        reportDTO.setTotalNumberOfDifferentDestinationCountryCodes(totalNumberOfDifferentDestinationCountryCodes());
+        reportDTO.setTotalNumberOfRaws(totalNumberOfRows(date));
+        reportDTO.setTotalNumberOfCalls(totalNumberOfCalls(date));
+        reportDTO.setTotalNumberOfMessages(totalNumberOfMessages(date));
+        reportDTO.setTotalNumberOfDifferentOriginCountryCodes(totalNumberOfDifferentOriginCountryCodes(date));
+        reportDTO.setTotalNumberOfDifferentDestinationCountryCodes(totalNumberOfDifferentDestinationCountryCodes(date));
         return reportDTO;
     }
 
@@ -59,7 +58,6 @@ public class MessageServiceImpl implements MessageService {
     @Override
     public ReportDTO getAllMetrics() {
         ReportDTO reportDTO = new ReportDTO();
-        reportDTO.setTotalNumberOfProcessedJSONFiles(totalNumberOfProcessedJSONFiles());
         reportDTO.setTotalNumberOfRaws(totalNumberOfRows());
         reportDTO.setTotalNumberOfCalls(totalNumberOfCalls());
         reportDTO.setTotalNumberOfMessages(totalNumberOfMessages());
@@ -68,11 +66,39 @@ public class MessageServiceImpl implements MessageService {
         return reportDTO;
     }
 
-    /* Total number of processed JSON files */
+    // ------------------------------------------------------------------------------------------------------------
+
+    /* Total number of rows */
     @Override
-    public int totalNumberOfProcessedJSONFiles() {
-        return messageRepository.totalNumberOfProcessedJSONFiles();
+    public int totalNumberOfRows(LocalDate date) {
+        return messageRepository.totalNumberOfRows(date);
     }
+
+    /* total number of calls */
+    @Override
+    public int totalNumberOfCalls(LocalDate date) {
+        return messageRepository.totalNumberOfCalls(date);
+    }
+
+    /* Total number of messages */
+    @Override
+    public int totalNumberOfMessages(LocalDate date) {
+        return messageRepository.totalNumberOfMessages(date);
+    }
+
+    /* Total number of different origin country codes (https://en.wikipedia.org/wiki/MSISDN) */
+    @Override
+    public int totalNumberOfDifferentOriginCountryCodes(LocalDate date) {
+        return messageRepository.totalNumberOfDifferentOriginCountryCodes(date);
+    }
+
+    /* Total number of different destination country codes */
+    @Override
+    public int totalNumberOfDifferentDestinationCountryCodes(LocalDate date) {
+        return messageRepository.totalNumberOfDifferentDestinationCountryCodes(date);
+    }
+
+    // ------------------------------------------------------------------------------------------------------------
 
     /* Total number of rows */
     @Override
