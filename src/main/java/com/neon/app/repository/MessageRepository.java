@@ -29,11 +29,11 @@ public interface MessageRepository extends JpaRepository<ReportDTO, Integer> {
     int totalNumberOfMessages();
 
     // total number of different origin country codes (https://en.wikipedia.org/wiki/MSISDN)
-    @Query(value = "SELECT COUNT(DISTINCT SUBSTRING(origin, 1, 2)) FROM messages", nativeQuery = true)
+    @Query(value = "SELECT COUNT(DISTINCT SUBSTRING(origin, 1, 2, 3)) FROM messages", nativeQuery = true)
     int totalNumberOfDifferentOriginCountryCodes();
 
     // Total number of different destination country codes
-    @Query(countQuery = "SELECT COUNT(DISTINCT SUBSTRING(destination, 1, 2)) FROM messages", nativeQuery = true)
+    @Query(countQuery = "SELECT COUNT(DISTINCT SUBSTRING(destination, 1, 2, 3)) FROM messages", nativeQuery = true)
     int totalNumberOfDifferentDestinationCountryCodes();
 
     // ------------------------------------------------------------------------------------------------------------
